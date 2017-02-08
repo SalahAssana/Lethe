@@ -28,23 +28,23 @@ def direction_confusion_matrix(matchIdx,gt_mat,cd_mat,dirIdx):
 	plt.matshow(entryConfusion)
 	plt.colorbar()
 	plt.show()
-	plt.savefig('confusionMatrix')
+	#plt.savefig('confusionMatrix')
 	plt.close()
 
 
 #Producing Histogram of Heights
 def height_histogram(matched_heights):
 	# the histogram of the data
-	n, bins, patches = plt.hist(matched_heights, 40, normed=1, facecolor='green', alpha=0.75)
-
+	#n, bins, patches = plt.hist(matched_heights, 40, normed=1, facecolor='green', alpha=0.75)
+	plt.hist(matched_heights)
 	plt.xlabel('Height Measurments')
 	plt.ylabel('Count')
 	plt.title(r'mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$')
-	plt.axis([10, 40, 0, 5])
+	plt.axis([10, 60, 0, 10])
 	plt.grid(True)
 
-	#plt.show()
-	plt.savefig('histogram')
+	plt.show()
+	#plt.savefig('histogram')
 	plt.close()
 		
 
@@ -114,5 +114,5 @@ matched_heights = cd_mat[matchIdx[:,1],2].astype(float)
 height_histogram(matched_heights)
 
 #Confusion Matrix of Entry and Exit
-direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3)
-direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4)
+#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3)
+#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4)

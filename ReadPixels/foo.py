@@ -6,7 +6,7 @@ from struct import unpack
 
 with open("pixelValues.txt", "rb") as f:
 
-   humanHeatSignature = 8400
+   humanHeatSignature = 8200
    height = 0
    data_file = '/home/pi/Desktop/Scatter Plots/collectedHeights.log'
    fob = open(data_file, 'w')
@@ -29,7 +29,7 @@ with open("pixelValues.txt", "rb") as f:
 	   pixelByte = f.read(2)
 	   pixel = unpack("h", pixelByte)[0]
 
-	   if pixel > humanHeatSignature and newFrame == True:
+	   if pixel > humanHeatSignature and newFrame == True and (totalPixels % 60) == 29:
 	      height = 60 - (totalPixels/80)
 	      newFrame = False
 

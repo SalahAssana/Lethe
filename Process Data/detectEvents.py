@@ -31,11 +31,16 @@ def findDirection(eventArray):
 	elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HA':
 		#print ("You entered from the left and exited from the right")
 		return ('left','right')
+	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HA' and detect_direction_buffer[2] == 'HO':
+		return ('right', 'right')
+	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HB' and detect_direction_buffer[2] == 'HO':
+		return ('left', 'left')
 	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HA' and detect_direction_buffer[2] == 'HO' and detect_direction_buffer[3] == 'HB':
 		return ('right','left')
 	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HB' and detect_direction_buffer[2] == 'HO' and detect_direction_buffer[3] == 'HA':
 		return ('left', 'right')
 
+	
 
 i = 0
 for d in data:
@@ -67,6 +72,7 @@ for event in events:
 	#print(np.max(event_np[:,1].astype(int))
 
 	directionTuple = findDirection(event_np)
+	#directionTuple = ('right', 'left')
 
 	#Go through the array and find a list of unique state changes
 	#Based on the pattern of state changes you can decide entry and exit

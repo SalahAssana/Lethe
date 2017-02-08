@@ -7,7 +7,8 @@ with open("pixelValues.txt", "rb") as f:
    hotPixelA = False;
    hotPixelB = False;
    humanDetected = False;
-   data_file = '/home/pi/Desktop/collectedData.log'
+   newFrame = True;
+   data_file = '/home/pi/Desktop/Doorfly/Process Data/collectedData.log'
    fob = open(data_file, 'w')
 
 	
@@ -28,8 +29,9 @@ with open("pixelValues.txt", "rb") as f:
 	   pixelByte = f.read(2)
 	   pixel = unpack("h", pixelByte)[0]
 	   
-	   if pixel > 8300:
+	   if pixel > 8300 and newFrame == True and (totalPixels % 60) == 29:
 	      height = 60 - (totalPixels/80)
+	      newFrame = False
 
 	   if totalPixels == 2400:
 	      #print pixel,
@@ -48,6 +50,7 @@ with open("pixelValues.txt", "rb") as f:
 	fob.write(str(height))
 	fob.write("\n")
 	height = 0
+	newFrame = True
 
 	if not hotPixelA and not hotPixelB: fob.write("HO\n")
 	elif hotPixelA and not hotPixelB: fob.write("HA\n")
