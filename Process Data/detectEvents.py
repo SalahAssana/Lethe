@@ -30,6 +30,8 @@ def findDirection(eventArray):
 
 	print (detect_direction_buffer)
 
+	if len(detect_direction_buffer) <= 1: return ('right', 'right')
+
 	if detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO':
 		return ('left','left')
 	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO':
@@ -40,6 +42,8 @@ def findDirection(eventArray):
 	elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HA':
 		#print ("You entered from the left and exited from the right")
 		return ('left','right')
+	else:
+		return ('right', 'right')
 
 	
 

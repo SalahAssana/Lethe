@@ -2,7 +2,7 @@ from struct import unpack
 
 with open("pixelValues.txt", "rb") as f:
 
-   humanHeatSignature = 8200
+   humanHeatSignature = 8300
    height = 0
    hotPixelA = False;
    hotPixelB = False;
@@ -33,12 +33,12 @@ with open("pixelValues.txt", "rb") as f:
 	      height = 60 - (totalPixels/80)
 	      newFrame = False
 
-	   if totalPixels == 2400:
+	   if (totalPixels%80) == 0:
 	      #print pixel,
 	      if pixel > humanHeatSignature:
 		hotPixelA = True
 
-	   if totalPixels == 2479:
+	   if (totalPixels%80) == 79:
 	      #print pixel
 	      if pixel > humanHeatSignature:
 		hotPixelB = True
