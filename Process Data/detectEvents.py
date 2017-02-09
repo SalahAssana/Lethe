@@ -25,20 +25,21 @@ def findDirection(eventArray):
 	#Print out the array once it's been made
 	#print (detect_direction_buffer)
 
-	if detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HB':
+	if detect_direction_buffer[0] == 'HO':
+		detect_direction_buffer = detect_direction_buffer[1:]
+
+	print (detect_direction_buffer)
+
+	if detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO':
+		return ('left','left')
+	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO':
+		return ('right', 'right')
+	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HB':
 		#print ("You entered from the right and exited from the left")
 		return ('right', 'left')
 	elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HA':
 		#print ("You entered from the left and exited from the right")
 		return ('left','right')
-	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HA' and detect_direction_buffer[2] == 'HO':
-		return ('right', 'right')
-	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HB' and detect_direction_buffer[2] == 'HO':
-		return ('left', 'left')
-	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HA' and detect_direction_buffer[2] == 'HO' and detect_direction_buffer[3] == 'HB':
-		return ('right','left')
-	elif detect_direction_buffer[0] == 'HO' and detect_direction_buffer[1] == 'HB' and detect_direction_buffer[2] == 'HO' and detect_direction_buffer[3] == 'HA':
-		return ('left', 'right')
 
 	
 
