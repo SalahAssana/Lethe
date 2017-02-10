@@ -1,8 +1,11 @@
 #!/usr/bin/python
+import sys
+
+inputFile = sys.argv[1]
 
 outputFile = open("groundTruthResults.csv", "w")
 
-with open("groundTruth.log") as f:
+with open(inputFile) as f:
     while True:
         enterFrom = f.readline().strip()
         if enterFrom == "grave": break

@@ -5,7 +5,9 @@ import numpy as np
 
 from struct import unpack
 
-with open("pixelValues.txt", "rb") as f:
+inputFile = sys.argv[1]
+
+with open(inputFile, "rb") as f:
 
    humanHeatSignature = 8300
    height = 0
@@ -40,7 +42,7 @@ with open("pixelValues.txt", "rb") as f:
 
 	totalFrames += 1
 
-	if totalFrames >= 1475:
+	if totalFrames >= 511:
 	   print (totalFrames)
 	   a = np.array(frameArray)
 	   a.resize(60, 80)

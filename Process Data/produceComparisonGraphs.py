@@ -40,13 +40,20 @@ def height_histogram(matched_heights):
 	plt.xlabel('Height Measurments')
 	plt.ylabel('Count')
 	plt.title(r'mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$')
-	plt.axis([10, 60, 0, 10])
+	plt.axis([10, 80, 0, 10])
 	plt.grid(True)
 
 	plt.show()
 	#plt.savefig('histogram')
 	plt.close()
-		
+	#This is being added to collect height values over time
+	heightFile = open('allHeights.txt', 'a')
+
+	for s in matched_heights:
+	    heightFile.write(str(s) + ' ')
+
+	heightFile.write('\n')
+	heightFile.close()
 
 #Opening files and processing data
 groundTruth = open("groundTruthResults.csv")

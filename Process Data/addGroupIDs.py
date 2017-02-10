@@ -1,5 +1,9 @@
+import sys
+
+inputFile = sys.argv[1]
+
 outputFile = open("collectedDataWithGroupId.csv", "w")
-input = open("collectedData.log")
+input = open(inputFile)
 groupID = 0
 startOfSpike = False
 

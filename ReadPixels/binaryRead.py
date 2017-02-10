@@ -1,6 +1,17 @@
 import sys
 from struct import unpack
 
+def rotate(matrix, degree):
+    if abs(degree) not in [0, 90, 180, 270, 360]:
+	print ('Can\'t Make That Rotation')
+	return matrix
+    if degree == 0:
+	return matrix
+    elif degree > 0:
+	return rotate(zip(*matrix[::-1]), degree-90)
+    else:
+	return rotate(zip(*matrix[::-1]), degree+90)
+
 inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
@@ -29,26 +40,43 @@ with open(inputFile, "rb") as f:
 	fob.write('\n')
 	#print seconds, milliseconds
 
+	imageBufferArray = []
+	for x in range(60):
+	    imageBufferArray.append([])
+	count = 0
+	column = 0
+
 	for totalPixels in range(0, 4800): 	  #The for loop read through all the pixels in the array	
 	   pixelByte = f.read(2)
 	   pixel = unpack("h", pixelByte)[0]
-	   
-	   if pixel > 8300 and newFrame == True and (totalPixels % 60) == 29:
-	      height = 60 - (totalPixels/80)
-	      newFrame = False
+	   imageBufferArray[column].append(pixel)
+	   count += 1
+	   if count == 80:
+		column += 1
+		count = 0
 
-	   if (totalPixels%80) == 0:
-	      #print pixel,
-	      if pixel > humanHeatSignature:
-		hotPixelA = True
+	rotatedImageBuffer = rotate(imageBufferArray, 270)
+	
+	for row in range(80):
+	    for column in range(60):
+   		pixel = rotatedImageBuffer[row][column]
 
-	   if (totalPixels%80) == 79:
-	      #print pixel
-	      if pixel > humanHeatSignature:
-		hotPixelB = True
+		if pixel > 8300 and newFrame == True:
+		    height = 80 - row
+		    newFrame = False
 
-	   if pixel > humanHeatSignature:
-	   	humanDetected = True
+		if column == 0:
+		    #print pixel,
+		    if pixel > humanHeatSignature:
+			hotPixelA = True
+
+		if column == 59:
+		    #print pixel
+		    if pixel > humanHeatSignature:
+			hotPixelB = True
+
+		if pixel > humanHeatSignature:
+			humanDetected = True
 
 	#print "The max height found is: " + str(height)
 	fob.write(str(height))
