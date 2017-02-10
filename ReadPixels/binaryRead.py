@@ -1,6 +1,10 @@
+import sys
 from struct import unpack
 
-with open("pixelValues.txt", "rb") as f:
+inputFile = sys.argv[1]
+outputFile = sys.argv[2]
+
+with open(inputFile, "rb") as f:
 
    humanHeatSignature = 8300
    height = 0
@@ -8,7 +12,7 @@ with open("pixelValues.txt", "rb") as f:
    hotPixelB = False;
    humanDetected = False;
    newFrame = True;
-   data_file = '/home/pi/Desktop/Doorfly/Process Data/collectedData.log'
+   data_file = '/home/pi/Desktop/Doorfly/Process Data/'+outputFile
    fob = open(data_file, 'w')
 
 	
