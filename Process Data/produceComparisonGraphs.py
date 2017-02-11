@@ -1,3 +1,4 @@
+import time
 import itertools
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,21 +15,45 @@ def direction_confusion_matrix(matchIdx,gt_mat,cd_mat,dirIdx):
 	for match in matchIdx:
 		gt_entry = gt_mat[match[0], dirIdx]
 		cd_entry = cd_mat[match[1], dirIdx]
-		if gt_entry == cd_entry and gt_entry == 'left':
+		
+		if cd_entry == 'left' and gt_entry == 'left':
 			entryConfusion[0][0] = entryConfusion[0][0] + 1
-		elif gt_entry is not cd_entry and gt_entry == 'right':
-			entryConfusion[1][0] = entryConfusion[1][0] + 1		
-		elif gt_entry is not cd_entry and gt_entry == 'left':
+		elif gt_entry == 'right' and cd_entry == 'left':
 			entryConfusion[0][1] = entryConfusion[0][1] + 1
-		elif gt_entry == cd_entry and gt_entry == 'right':
+		elif gt_entry == 'right' and cd_entry == 'left':
+			entryConfusion[1][0] = entryConfusion[1][0] + 1
+		elif cd_entry == 'right' and gt_entry == 'right':
 			entryConfusion[1][1] = entryConfusion[1][1] + 1
 
 	entryConfusion = np.array(entryConfusion)
+	
+	xlabels = ['Groud Truth Left', 'Ground Truth Right']
+	ylabels = ['Captured Left', 'Captured Right']
 
-	plt.matshow(entryConfusion)
-	plt.colorbar()
-	plt.show()
-	#plt.savefig('confusionMatrix')
+	font = {'family': 'serif',
+		'color': 'black',
+		'weight': 'bold',
+		'size': 16,
+	       }
+
+	x_val = entryConfusion[0][0]
+	y_val = entryConfusion[1][1]
+
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	cax = ax.matshow(entryConfusion, interpolation='nearest')
+	fig.colorbar(cax)
+
+	ax.set_xticklabels(['']+xlabels)
+	ax.set_yticklabels(['']+ylabels)
+	
+	ax.text(0, 0, str(entryConfusion[0][0]), fontdict=font, va='center', ha='center')
+	ax.text(0, 1, str(entryConfusion[0][1]), fontdict=font, va='center', ha='center')
+	ax.text(1, 0, str(entryConfusion[1][0]), fontdict=font, va='center', ha='center')
+	ax.text(1, 1, str(entryConfusion[1][1]), fontdict=font, va='center', ha='center')
+
+	#plt.show()
+	plt.savefig(str(time.strftime('%H:%M:%S')))
 	plt.close()
 
 
@@ -118,8 +143,8 @@ for index in range(len(gt_mat)):
 
 #histogram of all matching heights
 matched_heights = cd_mat[matchIdx[:,1],2].astype(float)
-height_histogram(matched_heights)
+#height_histogram(matched_heights)
 
 #Confusion Matrix of Entry and Exit
-#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3)
-#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4)
+direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3) # For all entry points
+direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4) # For all exit points

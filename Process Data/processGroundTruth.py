@@ -30,22 +30,22 @@ with open(inputFile) as f:
         if enterFrom == "Page_Up":
           #print ("Enter From Right")
 	  enterRight = True
-	  enterFrom = 'right'
+	  enterFrom = 'left'
 
         elif enterFrom == "Next":
           #print ("Enter From Left")
 	  enterLeft = True
-	  enterFrom = 'left'
+	  enterFrom = 'right'
 
         if exitFrom == "Page_Up":
           #print ("Exit From Right")
 	  exitRight = True
-	  exitFrom = 'right'
+	  exitFrom = 'left'
 
         elif exitFrom == "Next":
           #print ("Exit From Left")
 	  exitLeft = True
-	  exitFrom = 'left'
+	  exitFrom = 'right'
 
         #if enterRight is True and exitLeft is True: print("The Person Went Left")
 	#if enterLeft is True and exitRight is True: print("The Person Went Right")

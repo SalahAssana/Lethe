@@ -42,12 +42,13 @@ with open(inputFile, "rb") as f:
 
 	totalFrames += 1
 
-	if totalFrames >= 511:
+	if totalFrames >= 906:
 	   print (totalFrames)
 	   a = np.array(frameArray)
 	   a.resize(60, 80)
 	   plt.imshow(a)
 	   plt.show()
+	   a = np.zeros((60, 80))
 	frameArray = []
 
 	#fob.write(str(height))

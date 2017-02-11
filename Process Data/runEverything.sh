@@ -13,4 +13,3 @@ python processGroundTruth.py $2
 #INPUT: groundTruthResults.csv, collectedDataResults.csv
 #OUTPUT: Height Histogram, Direction Confusion Matrix
 python produceComparisonGraphs.py
-

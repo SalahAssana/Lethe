@@ -23,7 +23,7 @@ with open(inputFile, "rb") as f:
    hotPixelB = False;
    humanDetected = False;
    newFrame = True;
-   data_file = '/home/pi/Desktop/Doorfly/Process Data/'+outputFile
+   data_file = '/home/pi/Desktop/Doorfly/Process Data/'+outputFile+'PixelValuesProcessedData.log'
    fob = open(data_file, 'w')
 
 	
@@ -61,16 +61,16 @@ with open(inputFile, "rb") as f:
 	    for column in range(60):
    		pixel = rotatedImageBuffer[row][column]
 
-		if pixel > 8300 and newFrame == True:
+		if pixel > humanHeatSignature and newFrame == True:
 		    height = 80 - row
 		    newFrame = False
 
-		if column == 0:
+		if column >= 0 and column <=20:
 		    #print pixel,
 		    if pixel > humanHeatSignature:
 			hotPixelA = True
 
-		if column == 59:
+		if column >= 39 and column <= 59:
 		    #print pixel
 		    if pixel > humanHeatSignature:
 			hotPixelB = True
