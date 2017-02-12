@@ -30,19 +30,23 @@ with open(inputFile, "rb") as f:
 	#fob.write('\n')
 	#print seconds, milliseconds
 
+	humanDetected = False
+
 	for totalPixels in range(0, 4800): 	  #The for loop read through all the pixels in the array	
 	   pixelByte = f.read(2)
 	   pixel = unpack("h", pixelByte)[0]
 	   frameArray.append(pixel)
 
 	   if pixel > humanHeatSignature and newFrame == True:
-	      if (totalPixels % 80) >= 28 and (totalPixels % 80) <= 30: #This checks to see if the pixel is in the three middle columns
-	      	height = 60 - (totalPixels/80)
+	   #   if (totalPixels % 80) >= 28 and (totalPixels % 80) <= 30: #This checks to see if the pixel is in the three middle columns
+	     	height = 60 - (totalPixels/80)
 	      	newFrame = False
+		humanDetected = True
 
 	totalFrames += 1
 
-	if totalFrames >= 906:
+	if totalFrames >= 2969:
+	#if humanDetected:
 	   print (totalFrames)
 	   a = np.array(frameArray)
 	   a.resize(60, 80)

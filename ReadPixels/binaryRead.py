@@ -18,6 +18,7 @@ outputFile = sys.argv[2]
 with open(inputFile, "rb") as f:
 
    humanHeatSignature = 8300
+   heightHeatSignature = 8350
    height = 0
    hotPixelA = False;
    hotPixelB = False;
@@ -61,16 +62,16 @@ with open(inputFile, "rb") as f:
 	    for column in range(60):
    		pixel = rotatedImageBuffer[row][column]
 
-		if pixel > humanHeatSignature and newFrame == True:
+		if pixel > heightHeatSignature and newFrame == True:
 		    height = 80 - row
 		    newFrame = False
 
-		if column >= 0 and column <=20:
+		if column >= 0 and column <=9:
 		    #print pixel,
 		    if pixel > humanHeatSignature:
 			hotPixelA = True
 
-		if column >= 39 and column <= 59:
+		if column >= 50 and column <= 59:
 		    #print pixel
 		    if pixel > humanHeatSignature:
 			hotPixelB = True

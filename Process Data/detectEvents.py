@@ -30,21 +30,41 @@ def findDirection(eventArray):
 
 	print (detect_direction_buffer)
 
-	if len(detect_direction_buffer) <= 2: return ('right', 'right')
+	#Currenlty the code will try to guess your direction if it doesn't have enough info
+	#THE STATE HO USES THE LETTER O AND NOT THE NUMBER 0
 
-	if detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and len(detect_direction_buffer) < 3:
-		return ('left','right')
-	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO' and len(detect_direction_buffer) < 3:
+	if len(detect_direction_buffer) == 0:
+		return ('null', 'null')
+
+	if len(detect_direction_buffer) == 1:
+	   if detect_direction_buffer[0] == 'HA':
 		return ('right', 'left')
-	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HB':
-		return ('right', 'left')
-	elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HAB' and detect_direction_buffer[2] == 'HB':
-		return ('right', 'left')
-	elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HA':
-		return ('left','right')
-	elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HAB' and detect_direction_buffer[2] == 'HA':
+	   elif detect_direction_buffer[0] == 'HB':
 		return ('left', 'right')
 
+	elif len(detect_direction_buffer) == 2:
+	   if detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HB':
+		return ('right', 'left')
+	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HA':
+		return ('left', 'right')
+	   elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO':
+		return ('right', 'left')
+	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO':
+		return ('left', 'right')
+	   elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HAB':
+		return ('right', 'left')
+	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HAB':
+		return ('left', 'right')
+
+	elif len(detect_direction_buffer) >= 3:
+	   if detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HAB' and detect_direction_buffer[2] == 'HB':
+		return ('right', 'left')
+	   if detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HAB' and detect_direction_buffer[2] == 'HA':
+		return ('left', 'right')
+	   if detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HB':
+		return ('right', 'left')
+	   if detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO' and detect_direction_buffer[2] == 'HA':
+		return ('left', 'right')
 	
 
 i = 0

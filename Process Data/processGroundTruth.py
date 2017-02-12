@@ -12,10 +12,10 @@ with open(inputFile) as f:
         startTime = f.readline().strip()
         exitFrom = f.readline().strip()
         endTime = f.readline().strip()
-
+	
 	startTime_array = startTime.split(".")
 	endTime_array = endTime.split(".")
-
+	print (startTime_array)
 	while len(startTime_array[1]) < 9: startTime_array[1] = "0"+startTime_array[1]
 	while len(endTime_array[1]) < 9: endTime_array[1] = "0"+endTime_array[1]
 

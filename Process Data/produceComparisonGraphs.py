@@ -26,6 +26,8 @@ def direction_confusion_matrix(matchIdx,gt_mat,cd_mat,dirIdx):
 			entryConfusion[1][1] = entryConfusion[1][1] + 1
 
 	entryConfusion = np.array(entryConfusion)
+
+	print (entryConfusion)
 	
 	xlabels = ['Groud Truth Left', 'Ground Truth Right']
 	ylabels = ['Captured Left', 'Captured Right']
@@ -143,8 +145,8 @@ for index in range(len(gt_mat)):
 
 #histogram of all matching heights
 matched_heights = cd_mat[matchIdx[:,1],2].astype(float)
-#height_histogram(matched_heights)
+height_histogram(matched_heights)
 
 #Confusion Matrix of Entry and Exit
-direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3) # For all entry points
-direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4) # For all exit points
+#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,3) # For all entry points
+#direction_confusion_matrix(matchIdx,gt_mat,cd_mat,4) # For all exit points
