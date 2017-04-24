@@ -19,9 +19,9 @@ with open(inputFile, "rb") as f:
 
    humanHeatSignature = 8300
    leftmostPixel = 60
-   rightmostPixel = 0
+   rightmostPixel = -1
    humanDetected = False
-   data_file = '/home/pi/Desktop/Doorfly/newDirectionAlgorithem/'+outputFile+'PixelValuesProcessedData.log'
+   data_file = '/home/pi/Desktop/Doorfly/newDirectionAlgorithem/'+outputFile+'PixelValuesProcessedDataND.log'
    fob = open(data_file, 'w')
    #startOfSpke = False
 
@@ -89,6 +89,6 @@ with open(inputFile, "rb") as f:
 	fob.write(str(leftmostPixel))
 	fob.write("\n")
 
-	rightmostPixel = 0
+	rightmostPixel = -1
 	leftmostPixel = 60
 
