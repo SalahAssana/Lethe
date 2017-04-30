@@ -34,13 +34,13 @@ def findDirection(eventArray):
 	#THE STATE HO USES THE LETTER O AND NOT THE NUMBER 0
 
 	if len(detect_direction_buffer) == 0:
-		return ('null', 'null')
+		return ('?', '?')
 
 	if len(detect_direction_buffer) == 1:
 	   if detect_direction_buffer[0] == 'HA':
-		return ('right', 'left')
+		return ('right', '?')
 	   elif detect_direction_buffer[0] == 'HB':
-		return ('left', 'right')
+		return ('left', '?')
 
 	elif len(detect_direction_buffer) == 2:
 	   if detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HB':
@@ -48,9 +48,9 @@ def findDirection(eventArray):
 	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HA':
 		return ('left', 'right')
 	   elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HO':
-		return ('right', 'left')
+		return ('right', '?')
 	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HO':
-		return ('left', 'right')
+		return ('left', '?')
 	   elif detect_direction_buffer[0] == 'HA' and detect_direction_buffer[1] == 'HAB':
 		return ('right', 'left')
 	   elif detect_direction_buffer[0] == 'HB' and detect_direction_buffer[1] == 'HAB':
