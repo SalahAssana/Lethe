@@ -45,7 +45,7 @@ with open(inputFile, "rb") as f:
 
 	totalFrames += 1
 
-	if totalFrames >= 2969:
+	if totalFrames >= 927:
 	#if humanDetected:
 	   print (totalFrames)
 	   a = np.array(frameArray)
