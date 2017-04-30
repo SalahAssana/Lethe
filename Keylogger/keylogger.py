@@ -12,12 +12,16 @@ grave key is found below Esc key
 """
 
 import pyxhook
+import sys
 #change this to your log file's path
-log_file='/home/pi/Desktop/file.log'
+
+fileName = sys.argv[1]
+
+log_file='/home/pi/Desktop/Doorfly/CollectedData/GroundTruth/' + fileName + 'GroundTruth.log'
 
 #this function is called everytime a key is pressed.
 def OnKeyPress(event):
-  fob=open(log_file,'a')
+  fob=open(log_file,'w')
   fob.write(event.Key)
   fob.write('\n')
 
