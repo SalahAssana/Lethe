@@ -17,11 +17,11 @@ import sys
 
 fileName = sys.argv[1]
 
-log_file='/home/pi/Desktop/Doorfly/CollectedData/GroundTruth/' + fileName + 'GroundTruth.log'
+log_file='../CollectedData/GroundTruth/' + fileName + 'GroundTruth.log'
+fob=open(log_file, 'w')
 
 #this function is called everytime a key is pressed.
 def OnKeyPress(event):
-  fob=open(log_file,'w')
   fob.write(event.Key)
   fob.write('\n')
 
