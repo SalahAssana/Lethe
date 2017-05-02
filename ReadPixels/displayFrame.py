@@ -1,5 +1,7 @@
 import sys	
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -45,13 +47,14 @@ with open(inputFile, "rb") as f:
 
 	totalFrames += 1
 
-	if totalFrames >= 927:
+	if totalFrames == 927:
 	#if humanDetected:
 	   print (totalFrames)
 	   a = np.array(frameArray)
 	   a.resize(60, 80)
-	   plt.imshow(a)
-	   plt.show()
+	   plt.savefig('problemFrame.png', dpi=300, bbox_inches='tight')
+	   #plt.imshow(a)
+	   #plt.show()
 	   a = np.zeros((60, 80))
 	frameArray = []
 
