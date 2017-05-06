@@ -13,16 +13,19 @@ grave key is found below Esc key
 
 import pyxhook
 import sys
+import time
 #change this to your log file's path
 
 fileName = sys.argv[1]
 
-log_file='../CollectedData/GroundTruth/' + fileName + 'GroundTruth.log'
+log_file= fileName + 'GroundTruth.log'
 fob=open(log_file, 'w')
 
 #this function is called everytime a key is pressed.
 def OnKeyPress(event):
   fob.write(event.Key)
+  fob.write('\n')
+  fob.write('%0.6f' % time.time())
   fob.write('\n')
 
   if event.Ascii==96: #96 is the ascii value of the grave key (`)
