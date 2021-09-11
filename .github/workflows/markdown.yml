@@ -1,0 +1,25 @@
+
+name: Render-latex-formula
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: render latex formulas
+        uses: kinglittleq/markdown-latex-math-render@v0.1
+        with:
+          markdown-files: md_files/*.md
+          output-dir: .
+      - name: Commit
+        run: |
+          git config --global user.name 'Github Action Bot'
+          git config --global user.email 'bot@example.com'
+          git add *.md
+          git commit -m 'Render latex formulas' || echo "No changes to commit"
+          git push origin || echo "No commits to push"
